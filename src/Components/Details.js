@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { ProductConsumer } from '../Context';
 import { Link } from 'react-router-dom';
 import { ButtonContainer } from './Button';
+import Header from './Header';
 
 export default class Details extends Component {
     render() {
         return (
+            <>
+            <Header/>
             <ProductConsumer>
                 {(value)=>{
               const {id,
@@ -17,6 +20,8 @@ export default class Details extends Component {
                    inCart}=
                     value.detailProduct;
                return(
+                
+                   
                    <div className="container py-5">
                        {/* title */}
                        <div className="row">
@@ -51,7 +56,7 @@ export default class Details extends Component {
                                <p className="text-muted lead">{info}</p>
                                {/* button */}
                                <div>
-                               <Link to=''>
+                               <Link to='/productlist'>
                                 <ButtonContainer>back to products 
                                 </ButtonContainer>
                             </Link>
@@ -70,6 +75,7 @@ export default class Details extends Component {
                )
                 }}
             </ProductConsumer>
+            </>
         )
     }
 }

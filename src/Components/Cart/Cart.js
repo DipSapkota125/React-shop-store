@@ -5,12 +5,17 @@ import EmptyCart from './EmptyCart';
 import { ProductConsumer } from '../../Context';
 import CartList from './CartList';
 import CartTotals from './CartTotals';
+import Header from '../Header';
+
 
 
 export default class Cart extends Component {
     render() {
         return (
-            <section>
+            <>
+                <Header/>
+           
+            <div>
                 <ProductConsumer>
                     {value=>{
                         const {cart} = value;
@@ -20,7 +25,8 @@ export default class Cart extends Component {
                                 <Title name="your" title="cart"/>
                                 <CartColumns/>
                                 <CartList value={value}/>
-                                <CartTotals value ={value}/>
+                                <CartTotals value ={value} 
+                                history = {this.props.history}/>
 
                                 </React.Fragment>
                                 
@@ -32,7 +38,9 @@ export default class Cart extends Component {
                     }}
                 </ProductConsumer>
                   
-            </section>
+            </div>
+            </>
+           
         )
     }
 }

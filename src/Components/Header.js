@@ -1,13 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
 import logo from '../logo.svg';
 import styled from 'styled-components';
-// import { ButtonContainer } from './Button';
-// import{FaCartPlus} from 'react-icons/fa';
+import { ButtonContainer } from './Button';
+import{FaCartPlus} from 'react-icons/fa';
+import * as FaIcons from 'react-icons/fa';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
-
-const Navbar = ()=> {
-
+const Header = ()=> {
+    const history = useHistory()
+    const logout = ()=>{
+        localStorage.removeItem('token');
+        history.push('/')
+    }
+    const handleLogout = () => {
+        confirmAlert({
+            title: 'Logout',
+            message: 'Are you sure you want to logout?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => logout()
+                },
+                {
+                    label: 'Cancel',
+                }
+            ]
+        });
+    }
   
         return (
             <NavWrapper className="navbar navbar-extends-sm navbar-dark px-sm-5">
@@ -22,16 +43,17 @@ const Navbar = ()=> {
 
                 <ul className ="navbar-nav align-items-center">
                     <li className="nav-item ml-5">
-                        <Link to="/aboutus"className="nav-link">
-                            About
+                        <Link to="/productlist"className="nav-link">
+                            Products
                         </Link>
                         
                     </li>
 
+
                   
                 </ul>
 
-            <form className="d-flex">
+            {/* <form className="d-flex">
             <Link class="btn btn-primary" to="/signin" style={{borderRadius:"3rem"}} 
             role="button">Sign In</Link>
 
@@ -39,16 +61,31 @@ const Navbar = ()=> {
             style={{borderRadius:"3rem", marginLeft:"5px"}}
              role="button">Sign Up</Link>
             
-            </form>
+            </form> */}
 
-                {/* <Link to='/cart'className="ml-auto">
+           
+
+           
+
+          
+                        <Link to="/contact"className="nav-link">
+                            Contact
+                        </Link>
+
+
+                        
+            <div onClick={handleLogout} className="icon_div">
+            <FaIcons.FaSignOutAlt title="Log out" className="m-auto" />
+            </div>
+
+                <Link to='/cart'className="ml-auto">
                     <ButtonContainer>
                         <span className="mr-2">
                         <FaCartPlus/>
                         </span>
                         my cart
                     </ButtonContainer>
-                </Link> */}
+                </Link>
 
            
                 
@@ -57,7 +94,7 @@ const Navbar = ()=> {
     
 }
 
-export default Navbar;
+export default Header;
 
 const NavWrapper = styled.nav`
 background: var(--mainBlue);

@@ -5,6 +5,7 @@ import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { ProductProvider } from './Context';
 import reportWebVitals from './reportWebVitals';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <ProductProvider>

@@ -10,9 +10,7 @@ export default function CartList({value}) {
             value={value}/>
         })}
            
-
-           
-            
+   
         </div>
     )
 }
